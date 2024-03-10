@@ -1,0 +1,11 @@
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\bin\Debug\laundrySystem.exe.config
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\bin\Debug\laundrySystem.exe
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\bin\Debug\laundrySystem.pdb
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.csproj.AssemblyReference.cache
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.loginForm.resources
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.Properties.Resources.resources
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.csproj.GenerateResource.cache
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.csproj.CoreCompileInputs.cache
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.exe
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.pdb
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.mainForm.resources
