@@ -9,3 +9,4 @@ C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySy
 C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.exe
 C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.pdb
 C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.mainForm.resources
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.customerForm.resources
