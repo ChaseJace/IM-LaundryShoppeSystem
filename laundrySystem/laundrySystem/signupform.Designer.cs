@@ -37,7 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.emp_age = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.emmp_gender = new System.Windows.Forms.TextBox();
+            this.emp_gender = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.emp_pass = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -117,12 +117,12 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Age:";
             // 
-            // emmp_gender
+            // emp_gender
             // 
-            this.emmp_gender.Location = new System.Drawing.Point(276, 243);
-            this.emmp_gender.Name = "emmp_gender";
-            this.emmp_gender.Size = new System.Drawing.Size(100, 20);
-            this.emmp_gender.TabIndex = 10;
+            this.emp_gender.Location = new System.Drawing.Point(276, 243);
+            this.emp_gender.Name = "emp_gender";
+            this.emp_gender.Size = new System.Drawing.Size(100, 20);
+            this.emp_gender.TabIndex = 10;
             // 
             // label6
             // 
@@ -158,6 +158,7 @@
             this.sign_in.TabIndex = 13;
             this.sign_in.Text = "Sign in";
             this.sign_in.UseVisualStyleBackColor = true;
+            this.sign_in.Click += new System.EventHandler(this.sign_in_Click);
             // 
             // signupform
             // 
@@ -167,7 +168,7 @@
             this.Controls.Add(this.sign_in);
             this.Controls.Add(this.emp_pass);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.emmp_gender);
+            this.Controls.Add(this.emp_gender);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.emp_age);
             this.Controls.Add(this.label5);
@@ -179,7 +180,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "signupform";
-            this.Text = "Form1";
+            this.Text = "Employee Sign up";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -197,7 +198,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox emp_age;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox emmp_gender;
+        private System.Windows.Forms.TextBox emp_gender;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox emp_pass;
         private System.Windows.Forms.Label label7;

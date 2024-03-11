@@ -22,3 +22,4 @@ D:\IM-Laundry\laundrySystem\laundrySystem\obj\Debug\laundrySystem.csproj.Generat
 D:\IM-Laundry\laundrySystem\laundrySystem\obj\Debug\laundrySystem.csproj.CoreCompileInputs.cache
 D:\IM-Laundry\laundrySystem\laundrySystem\obj\Debug\laundrySystem.exe
 D:\IM-Laundry\laundrySystem\laundrySystem\obj\Debug\laundrySystem.pdb
+D:\IM-Laundry\laundrySystem\laundrySystem\obj\Debug\laundrySystem.signupform.resources
