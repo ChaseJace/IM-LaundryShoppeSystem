@@ -29,10 +29,22 @@ namespace laundrySystem
 
         private void butLog_Click(object sender, EventArgs e)
         {
-            mainForm mainForm = new mainForm();
-            mainForm.Show();
+            if (txtUser.Text.Equals("admin") && txtPass.Text.Equals("123"))
+            {
+                mainForm mainForm = new mainForm();
+                mainForm.Show();
 
-            this.Hide();
+                this.Hide();
+            } else
+            {
+                MessageBox.Show("Wrong username or password. Please try again.");
+            }
+            
+        }
+
+        private void butExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

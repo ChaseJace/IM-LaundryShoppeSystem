@@ -21,5 +21,30 @@ namespace laundrySystem
         {
 
         }
+
+        private void butClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void lblWeight_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCost_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void butSales_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
