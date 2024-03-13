@@ -23,3 +23,10 @@ D:\IM-Laundry\laundrySystem\laundrySystem\obj\Debug\laundrySystem.csproj.CoreCom
 D:\IM-Laundry\laundrySystem\laundrySystem\obj\Debug\laundrySystem.exe
 D:\IM-Laundry\laundrySystem\laundrySystem\obj\Debug\laundrySystem.pdb
 D:\IM-Laundry\laundrySystem\laundrySystem\obj\Debug\laundrySystem.signupform.resources
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\bin\Debug\MySql.Data.dll
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\bin\Debug\System.Memory.dll
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\bin\Debug\System.Buffers.dll
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.signupform.resources
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.csproj.CopyComplete
