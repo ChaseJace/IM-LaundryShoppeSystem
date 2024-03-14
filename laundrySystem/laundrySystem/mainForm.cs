@@ -94,7 +94,7 @@ namespace laundrySystem
             DateTime date = this.date.Value; //gets the date selected by user
             int cusID = Convert.ToInt32(this.txtCustomer.Text);
             string empID = GenerateEmpId();
-            string launType = this.comboLaundry.SelectedItem.ToString();
+            string launType = comboLaundry.SelectedItem.ToString();
             int weight = Convert.ToInt32(this.txtWeight.Text);
             int cost = Convert.ToInt32(this.txtCost.Text);
             string payType = this.txtPayment.Text;
