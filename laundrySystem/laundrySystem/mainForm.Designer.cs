@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.tblStatus = new System.Windows.Forms.TableLayoutPanel();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.butSales = new System.Windows.Forms.Button();
             this.butInventory = new System.Windows.Forms.Button();
             this.butCustomer = new System.Windows.Forms.Button();
@@ -49,8 +50,9 @@
             this.butClear = new System.Windows.Forms.Button();
             this.butDelete = new System.Windows.Forms.Button();
             this.butUpdate = new System.Windows.Forms.Button();
-            this.butReceipt = new System.Windows.Forms.Button();
             this.butGcash = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tblStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblStatus
@@ -59,6 +61,7 @@
             this.tblStatus.ColumnCount = 2;
             this.tblStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblStatus.Controls.Add(this.listView1, 0, 0);
             this.tblStatus.Location = new System.Drawing.Point(17, 12);
             this.tblStatus.Name = "tblStatus";
             this.tblStatus.RowCount = 2;
@@ -66,6 +69,16 @@
             this.tblStatus.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblStatus.Size = new System.Drawing.Size(902, 520);
             this.tblStatus.TabIndex = 0;
+            // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(2, 2);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(447, 256);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // butSales
             // 
@@ -85,6 +98,7 @@
             this.butInventory.TabIndex = 2;
             this.butInventory.Text = "Inventory";
             this.butInventory.UseVisualStyleBackColor = true;
+            this.butInventory.Click += new System.EventHandler(this.butInventory_Click);
             // 
             // butCustomer
             // 
@@ -94,6 +108,7 @@
             this.butCustomer.TabIndex = 3;
             this.butCustomer.Text = "Add Customer";
             this.butCustomer.UseVisualStyleBackColor = true;
+            this.butCustomer.Click += new System.EventHandler(this.butCustomer_Click);
             // 
             // lblDate
             // 
@@ -176,7 +191,7 @@
             // 
             // butClose
             // 
-            this.butClose.Location = new System.Drawing.Point(1209, 12);
+            this.butClose.Location = new System.Drawing.Point(1215, 12);
             this.butClose.Name = "butClose";
             this.butClose.Size = new System.Drawing.Size(29, 23);
             this.butClose.TabIndex = 15;
@@ -234,6 +249,7 @@
             this.butClear.TabIndex = 21;
             this.butClear.Text = "Clear";
             this.butClear.UseVisualStyleBackColor = true;
+            this.butClear.Click += new System.EventHandler(this.butClear_Click);
             // 
             // butDelete
             // 
@@ -243,6 +259,7 @@
             this.butDelete.TabIndex = 23;
             this.butDelete.Text = "Delete";
             this.butDelete.UseVisualStyleBackColor = true;
+            this.butDelete.Click += new System.EventHandler(this.butDelete_Click);
             // 
             // butUpdate
             // 
@@ -252,15 +269,7 @@
             this.butUpdate.TabIndex = 22;
             this.butUpdate.Text = "Update";
             this.butUpdate.UseVisualStyleBackColor = true;
-            // 
-            // butReceipt
-            // 
-            this.butReceipt.Location = new System.Drawing.Point(1011, 423);
-            this.butReceipt.Name = "butReceipt";
-            this.butReceipt.Size = new System.Drawing.Size(142, 37);
-            this.butReceipt.TabIndex = 24;
-            this.butReceipt.Text = "Print";
-            this.butReceipt.UseVisualStyleBackColor = true;
+            this.butUpdate.Click += new System.EventHandler(this.butUpdate_Click);
             // 
             // butGcash
             // 
@@ -271,14 +280,25 @@
             this.butGcash.Text = "Gcash";
             this.butGcash.UseVisualStyleBackColor = true;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(968, 23);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(241, 36);
+            this.label15.TabIndex = 46;
+            this.label15.Text = "CUSTOMER INFO";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1250, 547);
+            this.ClientSize = new System.Drawing.Size(1251, 547);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.butGcash);
-            this.Controls.Add(this.butReceipt);
             this.Controls.Add(this.butDelete);
             this.Controls.Add(this.butUpdate);
             this.Controls.Add(this.butClear);
@@ -306,6 +326,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mainForm";
             this.Load += new System.EventHandler(this.mainForm_Load);
+            this.tblStatus.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,7 +355,8 @@
         private System.Windows.Forms.Button butClear;
         private System.Windows.Forms.Button butDelete;
         private System.Windows.Forms.Button butUpdate;
-        private System.Windows.Forms.Button butReceipt;
         private System.Windows.Forms.Button butGcash;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Label label15;
     }
 }

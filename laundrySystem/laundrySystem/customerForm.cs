@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,63 @@ namespace laundrySystem
         public customerForm()
         {
             InitializeComponent();
+        }
+
+        public partial class customerForm : Form
+        {
+            private string customerID;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Use the received customerID from mainForm
+            string cusID = this.customerID;
+            string cusLast = this.txtLName.Text;
+            string cusFirst = this.txtFName.Text;
+            string cusMI = this.txtMI.Text;
+            string cusGender = this.txtGender.Text;
+            int cusAge;
+            if (!int.TryParse(this.txtAge.Text, out cusAge))
+            {
+                MessageBox.Show("Invalid Age");
+                return;
+            }
+            string cusNum = this.txtContact.Text;
+
+            // Assuming Address_ID is NULL in this scenario
+            string insert = $"INSERT INTO tbl_Customer (Customer_ID, Address_ID, Cus_Lname, Cus_Fname, Cus_Initial, Cus_Gender, Cus_Age, Cus_ContactNum) " +
+                            $"VALUES (@cusID, NULL, @cusLast, @cusFirst, @cusMI, @cusGender, @cusAge, @cusNum)";
+
+            MySqlConnection databaseConnection = new MySqlConnection(MySQLConnectionString);
+            MySqlCommand commandDatabase = new MySqlCommand(insert, databaseConnection);
+            commandDatabase.Parameters.AddWithValue("@cusID", cusID);
+            commandDatabase.Parameters.AddWithValue("@cusLast", cusLast);
+            commandDatabase.Parameters.AddWithValue("@cusFirst", cusFirst);
+            commandDatabase.Parameters.AddWithValue("@cusMI", cusMI);
+            commandDatabase.Parameters.AddWithValue("@cusGender", cusGender);
+            commandDatabase.Parameters.AddWithValue("@cusAge", cusAge);
+            commandDatabase.Parameters.AddWithValue("@cusNum", cusNum);
+            commandDatabase.CommandTimeout = 60;
+
+            try
+            {
+                databaseConnection.Open();
+                int rowsAffected = commandDatabase.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Customer added successfully");
+                    ClearFields(); // Clear input fields
+                }
+                else
+                {
+                    MessageBox.Show("Failed to add customer");
+                }
+                databaseConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Query Error: " + ex.Message);
+            }
         }
 
         private void butClose_Click(object sender, EventArgs e)
@@ -40,6 +98,25 @@ namespace laundrySystem
         private void label8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        
+
+        private void textBox12_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Clear all input fields
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).Clear();
+                }
+            }
         }
     }
 }

@@ -30,3 +30,4 @@ C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySy
 C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\bin\Debug\System.Buffers.dll
 C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.signupform.resources
 C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.csproj.CopyComplete
+C:\Users\Jc Roy Lopez\OneDrive\Documents\GitHub\IM-LaundryShoppeSystem\laundrySystem\laundrySystem\obj\Debug\laundrySystem.salesForm.resources

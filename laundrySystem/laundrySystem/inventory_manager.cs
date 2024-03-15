@@ -1,65 +1,171 @@
 using System;
 using System.Collections.Generic;
 
-public class inventory_manager {
-    private List<Inventory> inventoryForms;
-    private List<Product> products;
-
-    public inventory_manager()  {
-        inventoryForms = new List<Inventory>();
-        products = new List<Product>();
-    }
-
-    public void AddProduct (Product product) {
-        product.product_id = products.Count + 1;
-        products.Add(product);
-    }
-
-    public List<Product> GetAllProducts() {
-        return products;
-    }
-
-    public void UpdateProduct(Product updated_product) {
-        var existingProduct = products.Find(product => product.product_id == updated_product.product_id);
-        if (existingProduct != null) {
-            existingProduct.product_name = updated_product.product_name;
-            existingProduct.product_price = updated_product.product_price;
-            existingProduct.product_quantity = updated_product.product_quantity;
-            existingProduct.prod_desc = updated_product.prod_desc;
-        }
-    }
-
-    public void DeleteProduct(Product deleted_product) {
-        var existingProduct = products.Find(product => product.product_id == deleted_product.product_id);
-        if (existingProduct != null) {
-            products.Remove(existingProduct);
-        }
-    }
-
-    public void AddInventoryForm(Inventory inventoryForm) {
-        inventoryForms.Add(inventoryForm);
-    }
-
-    public List<Inventory> GetAllInventoryForms() {
-        return inventoryForms;
-    }
-
-     public void UpdateInventoryForm(Inventory updatedForm)
+public class inventory_manager
+{
+    public void AddProduct(Product product)
     {
-        var existingForm = inventoryForms.Find(form => form.laundry_id == updatedForm.laundry_id && form.product_id == updatedForm.product_id);
-        if (existingForm != null)
+        try
         {
-            existingForm.quantity = updatedForm.quantity;
-            existingForm.unit = updatedForm.unit;
+            // Validate product input
+            if (!ValidateProduct(product))
+            {
+                throw new ArgumentException("Invalid product data.");
+            }
+
+            ProductForm.AddProductToDatabase(product);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error adding product: " + ex.Message);
+        }
+    }
+
+    public void UpdateProduct(Product updatedProduct)
+    {
+        try
+        {
+            // Validate updated product input
+            if (!ValidateProduct(updatedProduct))
+            {
+                throw new ArgumentException("Invalid product data.");
+            }
+
+            ProductForm.UpdateProductInDatabase(updatedProduct);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error updating product: " + ex.Message);
+        }
+    }
+
+    private bool ValidateProduct(Product product)
+    {
+        // Validate product name
+        if (string.IsNullOrWhiteSpace(product.product_name))
+        {
+            return false;
+        }
+
+        // Validate product price
+        if (product.product_price <= 0)
+        {
+            return false;
+        }
+
+        // Validate product quantity
+        if (product.product_quantity < 0)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public List<Product> GetAllProducts()
+    {
+        try
+        {
+            return ProductForm.GetAllProductsFromDatabase();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error fetching products: " + ex.Message);
+        }
+    }
+
+    public void DeleteProduct(Product productToDelete)
+    {
+        try
+        {
+            ProductForm.DeleteProductFromDatabase(productToDelete);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error deleting product: " + ex.Message);
+        }
+    }
+
+    public void AddInventoryForm(Inventory inventoryForm)
+    {
+        try
+        {
+            // Validate inventory input
+            if (!ValidateInventory(inventoryForm))
+            {
+                throw new ArgumentException("Invalid inventory form data.");
+            }
+
+            InventoryForm.AddInventoryFormToDatabase(inventoryForm);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error adding inventory form: " + ex.Message);
+        }
+    }
+
+    public void UpdateInventoryForm(Inventory updatedForm)
+    {
+        try
+        {
+            // Validate updated inventory input
+            if (!ValidateInventory(updatedForm))
+            {
+                throw new ArgumentException("Invalid inventory form data.");
+            }
+
+            InventoryForm.UpdateInventoryFormInDatabase(updatedForm);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error updating inventory form: " + ex.Message);
+        }
+    }
+
+    private bool ValidateInventory(Inventory inventory)
+    {
+        // Validate inventory quantity
+        if (inventory.quantity <= 0)
+        {
+            return false; // Quantity should be a positive integer
+        }
+
+        // Check for required fields
+        if (inventory.laundry_id <= 0 || inventory.product_id <= 0 || string.IsNullOrWhiteSpace(inventory.unit))
+        {
+            return false; // Ensure all required fields are provided
+        }
+
+        // Check if product exists
+        if (!ProductExists(inventory.product_id))
+        {
+            return false; // Product with the given ID does not exist
+        }
+
+        return true;
+    }
+
+    public List<Inventory> GetAllInventoryForms()
+    {
+        try
+        {
+            return InventoryForm.GetAllInventoryFormsFromDatabase();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error fetching inventory forms: " + ex.Message);
         }
     }
 
     public void DeleteInventoryForm(int laundryId, int productId)
     {
-        var existingForm = inventoryForms.Find(form => form.laundry_id == laundryId && form.product_id == productId);
-        if (existingForm != null)
+        try
         {
-            inventoryForms.Remove(existingForm);
+            InventoryForm.DeleteInventoryFormFromDatabase(laundryId, productId);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error deleting inventory form: " + ex.Message);
         }
     }
 }
