@@ -13,20 +13,21 @@ namespace laundrySystem
 {
     public partial class customerForm : Form
     {
-        public customerForm()
+        private string customerID;
+        public customerForm(string customerID)
         {
             InitializeComponent();
+            this.customerID = customerID;
         }
 
-        public partial class customerForm : Form
-        {
-            private string customerID;
-        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // Use the received customerID from mainForm
-            string cusID = this.customerID;
+         string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=db_laundry";
+
+        // Use the received customerID from mainForm
+        string cusID = this.customerID;
             string cusLast = this.txtLName.Text;
             string cusFirst = this.txtFName.Text;
             string cusMI = this.txtMI.Text;
@@ -117,6 +118,30 @@ namespace laundrySystem
                     ((TextBox)control).Clear();
                 }
             }
+
+
+        }
+
+        private void ClearFields()
+        {
+            // Clear all input fields
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).Clear();
+                }
+            }
+        }
+
+        private void butViewCus_Click(object sender, EventArgs e)
+        {
+            viewCustomerForm viewCustomerForm = new viewCustomerForm();
+
+            this.Enabled = false;
+            viewCustomerForm.ShowDialog();
+            this.Enabled = true;
+
         }
     }
 }

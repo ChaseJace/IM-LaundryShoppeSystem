@@ -46,5 +46,12 @@ namespace laundrySystem
         {
             Application.Exit();
         }
+
+        private void butSign_Click(object sender, EventArgs e)
+        {
+            signupform signupForm = new signupform();
+            signupForm.Show();
+            this.Hide();
+        }
     }
 }

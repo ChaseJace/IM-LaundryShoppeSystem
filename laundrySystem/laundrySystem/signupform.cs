@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace laundrySystem
 {
     public partial class signupform : Form
     {
+        string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=db_laundry";
+
+
         public signupform()
         {
             InitializeComponent();
@@ -22,8 +27,34 @@ namespace laundrySystem
 
         }
 
+        private string GenerateUniqueEmployeeId()
+        {
+            string employeeId;
+            do
+            {
+               employeeId = GenerateEmployeeId(); // Generate a new employee ID
+            } while (IsEmployeeIdExists(employeeId)); // Check if it already exists in the database
+            return employeeId;
+        }
+
+        private bool IsEmployeeIdExists(string employeeId)
+        {
+            string query = $"SELECT COUNT(*) FROM tbl_employee WHERE Emp_ID = '{employeeId}'";
+            using (MySqlConnection connection = new MySqlConnection(MySQLConnectionString))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    connection.Open();
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0; // If count is greater than 0, the employee ID already exists
+                }
+            }
+        }
+
         private void sign_in_Click(object sender, EventArgs e)
         {
+
+            string employeeID = GenerateUniqueEmployeeId();
             string fname = emp_Fname.Text;
             string lname = emp_Lname.Text;
             string password = emp_pass.Text;
@@ -67,6 +98,36 @@ namespace laundrySystem
                 return;
             }
 
+            string insert = $"INSERT INTO tbl_employee (Emp_ID, Emp_Lname, Emp_Fname, Emp_Initial, Emp_Age, Emp_Gender) " +
+                            $"VALUES ('{employeeID}', '{lname}', '{fname}', '{initial}', '{age}', '{gender}')";
+
+            MySqlConnection databaseConnection = new MySqlConnection(MySQLConnectionString);
+            MySqlCommand commandDatabase = new MySqlCommand(insert, databaseConnection);
+            commandDatabase.CommandTimeout = 60;
+
+            try
+            {
+                databaseConnection.Open();
+                int rowsAffected = commandDatabase.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Employee added successfully");
+                    this.Close();
+                    loginForm loginForm = new loginForm();
+                    loginForm.Show();
+
+                }
+                else
+                {
+                    MessageBox.Show("Failed to add employee");
+                }
+                databaseConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Query Error: " + ex.Message);
+            }
+
         }
 
         private bool IsValidName(string name)
@@ -100,6 +161,24 @@ namespace laundrySystem
             }
             gender = char.ToUpper(genderText[0]);
             return gender == 'M' || gender == 'F';
+        }
+
+        
+        private string GenerateEmployeeId()
+        {
+            int length = 11;
+            StringBuilder sb = new StringBuilder();
+            Random random = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                char randomChar;
+                do
+                {
+                    randomChar = (char)random.Next(48, 58); // Generate digits (0-9)
+                } while (!char.IsDigit(randomChar));
+                sb.Append(randomChar);
+            }
+            return sb.ToString();
         }
     }
 }

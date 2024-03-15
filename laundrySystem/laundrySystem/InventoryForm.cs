@@ -1,17 +1,25 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 public partial class InventoryForm : Form
-{
+{   
     private inventory_manager manager;
-    private laundryDB db;
+    private MySqlConnection connection;
+    private string connectionString = "server=localhost;port=3306;database=mydatabase;username=root;password=password";
 
-    public InventoryForm(inventory_manager manager, laundryDB db)
+    public InventoryForm(inventory_manager manager)
     {
         InitializeComponent();
         this.manager = manager;
-        this.db = db;
+        this.connection = new MySqlConnection(connectionString);
     }
 
     private void RefreshInventoryList()
@@ -33,11 +41,13 @@ public partial class InventoryForm : Form
     }
 
     private void buttonAddInventoryForm_Click(object sender, EventArgs e)
-    {
+    {   
         try
         {
             if (!ValidateInventoryInput())
                 return;
+
+            connection.Open();
 
             var newInventoryForm = new Inventory
             {
@@ -47,14 +57,12 @@ public partial class InventoryForm : Form
                 unit = textBoxUnit.Text
             };
 
-            string query = "INSERT INTO tbl_inventory (Laundry_ID, Product_ID, Quantity, Unit) VALUES (@LaundryID, @ProductID, @Quantity, @Unit)";
-            db.ExecuteNonQuery(query, new Dictionary<string, object>
-            {
-                { "@LaundryID", newInventoryForm.laundry_id },
-                { "@ProductID", newInventoryForm.product_id },
-                { "@Quantity", newInventoryForm.quantity },
-                { "@Unit", newInventoryForm.unit }
-            });
+            string insertQuery = $"INSERT INTO tbl_inventory (Laundry_ID, Product_ID, Quantity, Unit) " +
+                                 $"VALUES ('{newInventoryForm.laundry_id}', '{newInventoryForm.product_id}', '{newInventoryForm.quantity}', '{newInventoryForm.unit}')";
+            MySqlCommand commandDatabase = new MySqlCommand(insertQuery, connection);
+            commandDatabase.CommandTimeout = 60;
+
+            commandDatabase.ExecuteNonQuery();
 
             RefreshInventoryList();
             ClearInventoryInputFields();
@@ -63,21 +71,35 @@ public partial class InventoryForm : Form
         {
             MessageBox.Show("An error occurred while adding the inventory form: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        finally
+        {
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+        }
     }
 
     private void buttonUpdateInventoryForm_Click(object sender, EventArgs e)
-    {
+    {   
         try
         {
             if (!ValidateInventoryInput())
                 return;
+
+            connection.Open();
 
             if (dataGridViewInventory.SelectedRows.Count > 0)
             {
                 var selectedForm = (Inventory)dataGridViewInventory.SelectedRows[0].DataBoundItem;
                 selectedForm.quantity = Convert.ToInt32(textBoxQuantity.Text);
                 selectedForm.unit = textBoxUnit.Text;
-                manager.UpdateInventoryForm(selectedForm);
+
+                string updateQuery = $"UPDATE tbl_inventory SET Quantity = '{selectedForm.quantity}', Unit = '{selectedForm.unit}' " +
+                                     $"WHERE Laundry_ID = '{selectedForm.laundry_id}' AND Product_ID = '{selectedForm.product_id}'";
+                MySqlCommand commandDatabase = new MySqlCommand(updateQuery, connection);
+                commandDatabase.CommandTimeout = 60;
+
+                commandDatabase.ExecuteNonQuery();
+
                 RefreshInventoryList();
                 ClearInventoryInputFields();
             }
@@ -86,16 +108,28 @@ public partial class InventoryForm : Form
         {
             MessageBox.Show("An error occurred while updating the inventory form: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        finally
+        {
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+        }
     }
 
     private void buttonDeleteInventoryForm_Click(object sender, EventArgs e)
     {
         try
         {
+            connection.Open();
+
             if (dataGridViewInventory.SelectedRows.Count > 0)
             {
                 var selectedForm = (Inventory)dataGridViewInventory.SelectedRows[0].DataBoundItem;
-                manager.DeleteInventoryForm(selectedForm.laundry_id, selectedForm.product_id);
+                string deleteQuery = $"DELETE FROM tbl_inventory WHERE Laundry_ID = '{selectedForm.laundry_id}' AND Product_ID = '{selectedForm.product_id}'";
+                MySqlCommand commandDatabase = new MySqlCommand(deleteQuery, connection);
+                commandDatabase.CommandTimeout = 60;
+
+                commandDatabase.ExecuteNonQuery();
+
                 RefreshInventoryList();
                 ClearInventoryInputFields();
             }
@@ -103,6 +137,11 @@ public partial class InventoryForm : Form
         catch (Exception ex)
         {
             MessageBox.Show("An error occurred while deleting the inventory form: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
         }
     }
 
@@ -137,21 +176,4 @@ public partial class InventoryForm : Form
         textBoxUnit.Text = "";
     }
 
-    private void InitializeComponent()
-    {
-            this.SuspendLayout();
-            // 
-            // InventoryForm
-            // 
-            this.ClientSize = new System.Drawing.Size(282, 253);
-            this.Name = "InventoryForm";
-            this.Load += new System.EventHandler(this.InventoryForm_Load_1);
-            this.ResumeLayout(false);
-
-    }
-
-    private void InventoryForm_Load_1(object sender, EventArgs e)
-    {
-
-    }
 }

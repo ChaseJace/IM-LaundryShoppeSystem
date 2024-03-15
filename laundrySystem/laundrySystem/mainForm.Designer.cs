@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tblStatus = new System.Windows.Forms.TableLayoutPanel();
-            this.listView1 = new System.Windows.Forms.ListView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.butSales = new System.Windows.Forms.Button();
             this.butInventory = new System.Windows.Forms.Button();
             this.butCustomer = new System.Windows.Forms.Button();
@@ -52,33 +51,20 @@
             this.butUpdate = new System.Windows.Forms.Button();
             this.butGcash = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.tblStatus.SuspendLayout();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Laundry_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Laundry_Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customer_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Employee_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Laundry_Type_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tblStatus
-            // 
-            this.tblStatus.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tblStatus.ColumnCount = 2;
-            this.tblStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblStatus.Controls.Add(this.listView1, 0, 0);
-            this.tblStatus.Location = new System.Drawing.Point(17, 12);
-            this.tblStatus.Name = "tblStatus";
-            this.tblStatus.RowCount = 2;
-            this.tblStatus.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblStatus.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblStatus.Size = new System.Drawing.Size(902, 520);
-            this.tblStatus.TabIndex = 0;
-            // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(2, 2);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(447, 256);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // butSales
             // 
@@ -279,6 +265,7 @@
             this.butGcash.TabIndex = 25;
             this.butGcash.Text = "Gcash";
             this.butGcash.UseVisualStyleBackColor = true;
+            this.butGcash.Click += new System.EventHandler(this.butGcash_Click);
             // 
             // label15
             // 
@@ -291,12 +278,90 @@
             this.label15.Text = "CUSTOMER INFO";
             this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(-1, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(332, 637);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 47;
+            this.pictureBox1.TabStop = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Laundry_ID,
+            this.Laundry_Date,
+            this.Customer_ID,
+            this.Employee_ID,
+            this.Laundry_Type_ID,
+            this.Weight,
+            this.Cost,
+            this.Subtotal,
+            this.Status});
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dataGridView1.Location = new System.Drawing.Point(-1, 9);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(912, 523);
+            this.dataGridView1.TabIndex = 48;
+            // 
+            // Laundry_ID
+            // 
+            this.Laundry_ID.HeaderText = "Laundry_ID";
+            this.Laundry_ID.Name = "Laundry_ID";
+            // 
+            // Laundry_Date
+            // 
+            this.Laundry_Date.HeaderText = "Laundry_Date";
+            this.Laundry_Date.Name = "Laundry_Date";
+            // 
+            // Customer_ID
+            // 
+            this.Customer_ID.HeaderText = "Customer_ID";
+            this.Customer_ID.Name = "Customer_ID";
+            // 
+            // Employee_ID
+            // 
+            this.Employee_ID.HeaderText = "Employee_ID";
+            this.Employee_ID.Name = "Employee_ID";
+            // 
+            // Laundry_Type_ID
+            // 
+            this.Laundry_Type_ID.HeaderText = "Laundry_Type_ID";
+            this.Laundry_Type_ID.Name = "Laundry_Type_ID";
+            // 
+            // Weight
+            // 
+            this.Weight.HeaderText = "Weight";
+            this.Weight.Name = "Weight";
+            // 
+            // Cost
+            // 
+            this.Cost.HeaderText = "Cost";
+            this.Cost.Name = "Cost";
+            // 
+            // Subtotal
+            // 
+            this.Subtotal.HeaderText = "Subtotal";
+            this.Subtotal.Name = "Subtotal";
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1251, 547);
+            this.ClientSize = new System.Drawing.Size(1254, 547);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.butGcash);
             this.Controls.Add(this.butDelete);
@@ -319,22 +384,20 @@
             this.Controls.Add(this.butCustomer);
             this.Controls.Add(this.butInventory);
             this.Controls.Add(this.butSales);
-            this.Controls.Add(this.tblStatus);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mainForm";
             this.Load += new System.EventHandler(this.mainForm_Load);
-            this.tblStatus.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tblStatus;
         private System.Windows.Forms.Button butSales;
         private System.Windows.Forms.Button butInventory;
         private System.Windows.Forms.Button butCustomer;
@@ -356,7 +419,17 @@
         private System.Windows.Forms.Button butDelete;
         private System.Windows.Forms.Button butUpdate;
         private System.Windows.Forms.Button butGcash;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Laundry_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Laundry_Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Employee_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Laundry_Type_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Weight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Subtotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

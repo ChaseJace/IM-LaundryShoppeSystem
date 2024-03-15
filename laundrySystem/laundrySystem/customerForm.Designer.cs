@@ -58,6 +58,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.butSubmit = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
+            this.butViewCus = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // butClose
@@ -330,11 +331,22 @@
             this.label15.TabIndex = 45;
             this.label15.Text = "CUSTOMER INFO";
             // 
+            // butViewCus
+            // 
+            this.butViewCus.Location = new System.Drawing.Point(12, 301);
+            this.butViewCus.Name = "butViewCus";
+            this.butViewCus.Size = new System.Drawing.Size(123, 23);
+            this.butViewCus.TabIndex = 46;
+            this.butViewCus.Text = "View Customers";
+            this.butViewCus.UseVisualStyleBackColor = true;
+            this.butViewCus.Click += new System.EventHandler(this.butViewCus_Click);
+            // 
             // customerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 339);
+            this.Controls.Add(this.butViewCus);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.butSubmit);
             this.Controls.Add(this.button1);
@@ -406,5 +418,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button butSubmit;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button butViewCus;
     }
 }

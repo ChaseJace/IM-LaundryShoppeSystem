@@ -1,16 +1,23 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 public partial class ProductForm : Form
 {
-    private inventory_manager manager;
-    private laundryDB db;
+    private MySqlConnection connection;
+    private string connectionString = "server=localhost;port=3306;database=mydatabase;username=root;password=password";
 
-    public ProductForm(inventory_manager manager, laundryDB db)
+    public ProductForm()
     {
         InitializeComponent();
-        this.manager = manager;
-        this.db = db;
+        connection = new MySqlConnection(connectionString);
     }
 
     private void RefreshProductList()
@@ -18,7 +25,12 @@ public partial class ProductForm : Form
         try
         {
             dataGridViewProducts.DataSource = null;
-            dataGridViewProducts.DataSource = manager.GetAllProducts();
+            string query = "SELECT * FROM tbl_product";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            dataGridViewProducts.DataSource = dataTable;
         }
         catch (Exception ex)
         {
@@ -38,22 +50,12 @@ public partial class ProductForm : Form
             if (!ValidateProductInput())
                 return;
 
-            var newProduct = new Product
-            {
-                product_name = textBoxProductName.Text,
-                product_price = Convert.ToDecimal(textBoxProductPrice.Text),
-                product_quantity = Convert.ToInt32(textBoxProductQuantity.Text),
-                prod_desc = textBoxProductDescription.Text
-            };
+            connection.Open();
 
-            string query = "INSERT INTO tbl_product (Product_Name, Product_Price, Product_Quantity, Product_Desc) VALUES (@Name, @Price, @Quantity, @Description)";
-            db.ExecuteNonQuery(query, new Dictionary<string, object>
-            {
-                { "@Name", newProduct.product_name },
-                { "@Price", newProduct.product_price },
-                { "@Quantity", newProduct.product_quantity },
-                { "@Description", newProduct.product_desc }
-            });
+            string insertQuery = "INSERT INTO tbl_product (Product_Name, Product_Price, Product_Quantity, Product_Desc) " +
+                                 $"VALUES ('{textBoxProductName.Text}', '{textBoxProductPrice.Text}', '{textBoxProductQuantity.Text}', '{textBoxProductDescription.Text}')";
+            MySqlCommand command = new MySqlCommand(insertQuery, connection);
+            command.ExecuteNonQuery();
 
             RefreshProductList();
             ClearProductInputFields();
@@ -61,6 +63,11 @@ public partial class ProductForm : Form
         catch (Exception ex)
         {
             MessageBox.Show("An error occurred while adding the product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
         }
     }
 
@@ -71,15 +78,17 @@ public partial class ProductForm : Form
             if (!ValidateProductInput())
                 return;
 
+            connection.Open();
+
             if (dataGridViewProducts.SelectedRows.Count > 0)
             {
-                var selectedProduct = (Product)dataGridViewProducts.SelectedRows[0].DataBoundItem;
-                selectedProduct.product_name = textBoxProductName.Text;
-                selectedProduct.product_price = Convert.ToDecimal(textBoxProductPrice.Text);
-                selectedProduct.product_quantity = Convert.ToInt32(textBoxProductQuantity.Text);
-                selectedProduct.prod_desc = textBoxProductDescription.Text;
-
-                manager.UpdateProduct(selectedProduct);
+                var selectedRow = dataGridViewProducts.SelectedRows[0];
+                int productId = Convert.ToInt32(selectedRow.Cells["Product_ID"].Value);
+                string updateQuery = $"UPDATE tbl_product SET Product_Name = '{textBoxProductName.Text}', Product_Price = '{textBoxProductPrice.Text}', " +
+                                     $"Product_Quantity = '{textBoxProductQuantity.Text}', Product_Desc = '{textBoxProductDescription.Text}' " +
+                                     $"WHERE Product_ID = {productId}";
+                MySqlCommand command = new MySqlCommand(updateQuery, connection);
+                command.ExecuteNonQuery();
 
                 RefreshProductList();
                 ClearProductInputFields();
@@ -89,16 +98,26 @@ public partial class ProductForm : Form
         {
             MessageBox.Show("An error occurred while updating the product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        finally
+        {
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+        }
     }
 
     private void buttonDeleteProduct_Click(object sender, EventArgs e)
     {
         try
         {
+            connection.Open();
+
             if (dataGridViewProducts.SelectedRows.Count > 0)
             {
-                var selectedProduct = (Product)dataGridViewProducts.SelectedRows[0].DataBoundItem;
-                manager.DeleteProduct(selectedProduct);
+                var selectedRow = dataGridViewProducts.SelectedRows[0];
+                int productId = Convert.ToInt32(selectedRow.Cells["Product_ID"].Value);
+                string deleteQuery = $"DELETE FROM tbl_product WHERE Product_ID = {productId}";
+                MySqlCommand command = new MySqlCommand(deleteQuery, connection);
+                command.ExecuteNonQuery();
 
                 RefreshProductList();
                 ClearProductInputFields();
@@ -107,6 +126,11 @@ public partial class ProductForm : Form
         catch (Exception ex)
         {
             MessageBox.Show("An error occurred while deleting the product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
         }
     }
 

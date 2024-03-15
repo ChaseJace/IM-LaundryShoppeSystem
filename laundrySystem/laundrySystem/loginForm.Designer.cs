@@ -37,6 +37,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.butLog = new System.Windows.Forms.Button();
             this.butExit = new System.Windows.Forms.Button();
+            this.butSign = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -46,7 +47,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(65, 17);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(82, 82);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -70,7 +71,7 @@
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(9, 164);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(20, 18);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -80,7 +81,7 @@
             // txtUser
             // 
             this.txtUser.Location = new System.Drawing.Point(34, 164);
-            this.txtUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(2);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(176, 20);
             this.txtUser.TabIndex = 4;
@@ -88,7 +89,7 @@
             // txtPass
             // 
             this.txtPass.Location = new System.Drawing.Point(34, 214);
-            this.txtPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPass.Margin = new System.Windows.Forms.Padding(2);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(176, 20);
             this.txtPass.TabIndex = 6;
@@ -97,7 +98,7 @@
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(9, 214);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(20, 18);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -106,10 +107,10 @@
             // 
             // butLog
             // 
-            this.butLog.Location = new System.Drawing.Point(24, 284);
-            this.butLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.butLog.Location = new System.Drawing.Point(24, 251);
+            this.butLog.Margin = new System.Windows.Forms.Padding(2);
             this.butLog.Name = "butLog";
-            this.butLog.Size = new System.Drawing.Size(170, 19);
+            this.butLog.Size = new System.Drawing.Size(170, 30);
             this.butLog.TabIndex = 7;
             this.butLog.Text = "Log in";
             this.butLog.UseVisualStyleBackColor = true;
@@ -117,14 +118,25 @@
             // 
             // butExit
             // 
-            this.butExit.Location = new System.Drawing.Point(137, 318);
-            this.butExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.butExit.Location = new System.Drawing.Point(106, 307);
+            this.butExit.Margin = new System.Windows.Forms.Padding(2);
             this.butExit.Name = "butExit";
-            this.butExit.Size = new System.Drawing.Size(56, 19);
+            this.butExit.Size = new System.Drawing.Size(101, 30);
             this.butExit.TabIndex = 8;
             this.butExit.Text = "Exit";
             this.butExit.UseVisualStyleBackColor = true;
             this.butExit.Click += new System.EventHandler(this.butExit_Click);
+            // 
+            // butSign
+            // 
+            this.butSign.Location = new System.Drawing.Point(11, 307);
+            this.butSign.Margin = new System.Windows.Forms.Padding(2);
+            this.butSign.Name = "butSign";
+            this.butSign.Size = new System.Drawing.Size(91, 30);
+            this.butSign.TabIndex = 9;
+            this.butSign.Text = "Sign up";
+            this.butSign.UseVisualStyleBackColor = true;
+            this.butSign.Click += new System.EventHandler(this.butSign_Click);
             // 
             // loginForm
             // 
@@ -132,6 +144,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(218, 357);
+            this.Controls.Add(this.butSign);
             this.Controls.Add(this.butExit);
             this.Controls.Add(this.butLog);
             this.Controls.Add(this.txtPass);
@@ -141,7 +154,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "loginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "loginForm";
@@ -163,6 +176,7 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button butLog;
         private System.Windows.Forms.Button butExit;
+        private System.Windows.Forms.Button butSign;
     }
 }
 

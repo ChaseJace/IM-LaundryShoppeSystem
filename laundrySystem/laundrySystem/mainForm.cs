@@ -18,7 +18,10 @@ namespace laundrySystem
         public mainForm()
         {
             InitializeComponent();
+            pictureBox1.Visible = false;
         }
+
+
 
         private string GenerateLaundryId()
         {
@@ -37,7 +40,7 @@ namespace laundrySystem
             return sb.ToString();
         }
 
-        private string GenerateEmpId()
+        private string GenerateCustomerId()
         {
             int length = 8; // Adjust the desired length of the ID
             StringBuilder sb = new StringBuilder();
@@ -47,8 +50,8 @@ namespace laundrySystem
                 char randomChar;
                 do
                 {
-                    randomChar = (char)random.Next(65, 91); // Generate uppercase letters (A-Z)
-                } while (!char.IsLetterOrDigit(randomChar));
+                    randomChar = (char)random.Next(48, 58); // Generate digits (0-9)
+                } while (!char.IsDigit(randomChar));
                 sb.Append(randomChar);
             }
             return sb.ToString();
@@ -87,6 +90,20 @@ namespace laundrySystem
             this.Hide();
         }
 
+        private void butClear_Click(object sender, EventArgs e)
+        {
+            txtCustomer.Clear();
+            date.Value = DateTime.Now;
+            txtWeight.Clear();
+            txtCost.Clear();
+            txtPayment.Clear();
+        }
+
+        private void butGcash_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Visible = !pictureBox1.Visible;
+        }
+
         private void butCustomer_Click(object sender, EventArgs e)
         {
             string customerID = GenerateCustomerId();
@@ -121,7 +138,7 @@ namespace laundrySystem
                 MessageBox.Show("Invalid Customer ID");
                 return;
             }
-            string empID = GenerateEmpId();
+            string empID = "emp_id"; //incomplete
             string launType = comboLaundry.SelectedItem.ToString();
             int weight;
             if (!int.TryParse(this.txtWeight.Text, out weight))
@@ -169,7 +186,7 @@ namespace laundrySystem
         private void listUsers()
         {
             string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=db_laundry";
-            string query = "SELECT *FROM tbl_laundry";
+            string query = "SELECT * FROM tbl_laundry";
 
             MySqlConnection databaseConnection = new MySqlConnection(MySQLConnectionString);
             MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -179,16 +196,16 @@ namespace laundrySystem
             try
             {
                 databaseConnection.Open();
-                reader = commandDatabase.ExecuteReader();   
+                reader = commandDatabase.ExecuteReader();
+
+                
 
                 if (reader.HasRows)
                 {
-                    while (reader.Read())
-                    {
-                        string[] row = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8) };
-                        var listViewItem = new ListViewItem(row);
-                        listView1.Items.Add(listViewItem);
-                    }
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(reader);
+
+                    dataGridView1.DataSource = dataTable;
                 }
                 else
                 {
@@ -258,9 +275,8 @@ namespace laundrySystem
             }
         }
 
-        private void butClear_Click(object sender, EventArgs e)
-        {
+        
 
-        }
+
     }
 }
