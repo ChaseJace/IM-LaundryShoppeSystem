@@ -56,7 +56,12 @@
     <Compile Include="customerForm.Designer.cs">
       <DependentUpon>customerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="inventory.cs" />
+    <Compile Include="InventoryForm.cs" />
+    <Compile Include="inventory_manager.cs" />
     <Compile Include="laundryDB.cs" />
+    <Compile Include="product.cs" />
+    <Compile Include="ProductForm.cs" />
     <Compile Include="signupform.cs">
       <SubType>Form</SubType>
     </Compile>
