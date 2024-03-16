@@ -32,8 +32,8 @@ namespace laundrySystem
             string employeeId;
             do
             {
-               employeeId = GenerateEmployeeId(); // Generate a new employee ID
-            } while (IsEmployeeIdExists(employeeId)); // Check if it already exists in the database
+               employeeId = GenerateEmployeeId(); 
+            } while (IsEmployeeIdExists(employeeId)); 
             return employeeId;
         }
 
@@ -46,7 +46,7 @@ namespace laundrySystem
                 {
                     connection.Open();
                     int count = Convert.ToInt32(command.ExecuteScalar());
-                    return count > 0; // If count is greater than 0, the employee ID already exists
+                    return count > 0; 
                 }
             }
         }
@@ -179,6 +179,13 @@ namespace laundrySystem
                 sb.Append(randomChar);
             }
             return sb.ToString();
+        }
+
+        private void butClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            loginForm loginForm = new loginForm();
+            loginForm.Show();
         }
     }
 }

@@ -252,9 +252,8 @@ namespace laundrySystem
 
         private void butDelete_Click(object sender, EventArgs e) //incomplete
         {
-            //show message/input box on what row to delete
             string MySQLConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=db_laundry";
-            string delete = "SELECT *FROM tbl_laundry"; //delete values for upodate
+            string delete = "SELECT *FROM tbl_laundry"; 
 
             MySqlConnection databaseConnection = new MySqlConnection(MySQLConnectionString);
             MySqlCommand commandDatabase = new MySqlCommand(delete, databaseConnection);

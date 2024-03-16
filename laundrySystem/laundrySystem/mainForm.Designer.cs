@@ -189,7 +189,7 @@
             // 
             this.comboLaundry.FormattingEnabled = true;
             this.comboLaundry.Items.AddRange(new object[] {
-            "Wash + Dry (forgor)",
+            "Wash + Dry ",
             "HandWash",
             "Dry"});
             this.comboLaundry.Location = new System.Drawing.Point(1074, 154);
@@ -282,7 +282,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(-1, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(332, 637);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -385,7 +385,7 @@
             this.Controls.Add(this.butInventory);
             this.Controls.Add(this.butSales);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mainForm";
